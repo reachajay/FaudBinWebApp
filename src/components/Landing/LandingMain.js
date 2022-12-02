@@ -135,8 +135,8 @@ const LandingMain = () => {
 
         // const apiUrl = `${constant.BASE_URL}/auth/login`
         // const headers = {
-        //     "nationalId": "2316750625",
-        //     "password": "sk@123"
+        //     "nationalId": "",
+        //     "password": ""
         // }
 
         // axios.post(apiUrl, headers)
@@ -150,9 +150,9 @@ const LandingMain = () => {
 
         // const authUrl = `${constant.BASE_URL}/auth/mfa`
         // const mfaHeaders = {
-        //     "nationalId": "2316750625",
-        //     "type": 2,
-        //     "oneTimePassword": "1141"
+        //     "nationalId": "",
+        //     "type": '',
+        //     "oneTimePassword": ""
         // }
         // axios.post(authUrl, mfaHeaders)
         // .then((res) => {
@@ -173,8 +173,8 @@ const LandingMain = () => {
     const login = async() => {
         const apiUrl = `${constant.BASE_URL}/auth/login`
         const body = {
-            "nationalId": "2316750625",
-            "password": "sk@123"
+            "nationalId": "",
+            "password": ""
         }
 
         await axios.post(apiUrl, body)
@@ -190,9 +190,9 @@ const LandingMain = () => {
     const authHandler = async() => {
          const authUrl = `${constant.BASE_URL}/auth/mfa`
         const mfaHeaders = {
-            "nationalId": "2316750625",
-            "type": 2,
-            "oneTimePassword": "8795"
+            "nationalId": "",
+            "type": '',
+            "oneTimePassword": ""
         }
         axios.post(authUrl, mfaHeaders)
         .then((res) => {
@@ -207,7 +207,7 @@ const LandingMain = () => {
     const getDepartment = () => {
         const url = `${constant.BASE_URL}/departments`
         const headers = {
-            accessToken: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlIjp7InBhdGllbnRJZCI6MzY1MjY5LCJwYXRpZW50TmFtZSI6IlN1bmlsIEt1bWFyIFJhZ2h1IiwibW9iaWxlTm8iOiIwNTQyNTk3NDcwIiwiZnVsbEFnZSI6IjQzIFllYXJzIiwicmVnQ29kZSI6IlBGQlMuMDAwMDIyMDM1OCJ9LCJzdWIiOiJwYXRpZW50LWFwaSIsImlhdCI6MTY2OTg5NTE2MywiZXhwIjoxNjc4NTM1MTYzfQ.R0rM_kfT01GD6O75RvDK73M8NNzkcNBVCpZZAhGp5y4",
+            accessToken: "",
             "Content-Type": "application/json"
         }
         axios.get(url, {headers})
