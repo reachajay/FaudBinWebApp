@@ -4,8 +4,8 @@ import * as constant from '../constant';
 export const loginApi = () => {
     const url = `${constant.BASE_URL}/auth/login`
     const headers = {
-        "nationalId": "2316750625",
-        "password": "sk@123"
+        "nationalId": "",
+        "password": ""
     }
     axios.post(url, headers)
     .then((res) =>{
