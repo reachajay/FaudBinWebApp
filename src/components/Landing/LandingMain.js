@@ -374,8 +374,8 @@ const LandingMain = () => {
 
             <section id="Specialities">
                 <div className={classes.specialityWrapper}>
-                    <p className='heading_2_Medium'>Specialities</p>
-                    <p>Choose the speciality and book your specialities</p>
+                    <p className='heading_4_Medium'>Specialities</p>
+                    <p className='heading_Regular'>Choose the speciality and book your specialities</p>
                     {
                         deptLoader
                             ?
@@ -427,8 +427,8 @@ const LandingMain = () => {
 
             <section id="Services">
                 <div style={{ padding: '4rem 2rem' }}>
-                    <p className='heading_2_Medium'>Services</p>
-                    <p>Choose the speciality and book your appointment</p>
+                    <p className='heading_4_Medium'>Services</p>
+                    <p className='heading_Regular'>Choose the speciality and book your appointment</p>
                     <Grid container spacing={2}>
                         {viewMoreService ?
                             services.map((service, index) => {
@@ -473,7 +473,7 @@ const LandingMain = () => {
 
             <section id="Contact">
                 <div className={classes.contactWrapperDiv}>
-                    <p className='heading_2_Medium' style={{ color: '#F4F4F4' }}>Contact Us</p>
+                    <p className='heading_4_Medium' style={{ color: '#F4F4F4' }}>Contact Us</p>
                     <div className={`${classes.eachContactWrapper} dFlex para_12_Regular`}>
                         <div style={{ padding: '1rem' }}>
                             <p style={{ borderBottom: '2px solid #B9BBBB' }}>Introduction</p>

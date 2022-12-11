@@ -3,6 +3,12 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 // import { useDispatch } from 'react-redux';
 // import { setData } from '../../store/reducers/SelectedData';
+import anaesthesia from '../../Images/Anesthesia.png';
+import cardiology from '../../Images/Cardiology.png';
+import dentistry from '../../Images/Dentistry.png';
+import dermatology from '../../Images/Dermatology.png';
+import neurology from '../../Images/Neurology.png';
+
 
 const useStyles = makeStyles(() => ({
     wrapperCardDiv: {
@@ -36,7 +42,7 @@ const SectionCard = (props) => {
         <div >
             <div className={`${classes.wrapperCardDiv} dFlex cp`}>
                 <div className={classes.innerDiv}>
-                    <img src={props && props.icon && props.icon} alt="ic" />
+                    <img src={props && props.icon ? props.icon : props.data.toLowerCase() === 'anaesthesia' ? anaesthesia : props.data.toLowerCase() === 'cardiology' ? cardiology : props.data.toLowerCase() === 'dentistry' ? dentistry : props.data.toLowerCase() === 'dermatology' ? dermatology : props.data.toLowerCase() === 'neurology' ? neurology : ''} alt="ic" />
                 </div>
                 <div className={classes.textLabel}>{props.data.toLowerCase()}</div>
             </div>

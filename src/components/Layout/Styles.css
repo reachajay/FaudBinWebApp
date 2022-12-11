@@ -20,6 +20,17 @@ body {
     line-height: 120%;
 }
 
+.heading_Regular {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 120%;
+}
+
+.heading_4_Medium {
+    font-size: 4rem;
+    font-weight: 600;
+}
+
 .para_12_Regular {
     font-size: 1.2rem;
     font-weight: 400;
