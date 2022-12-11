@@ -42,7 +42,7 @@ import { setDeptData } from '../../store/reducers/SelectedData';
 import { useNavigate } from 'react-router';
 import jwt_decode from "jwt-decode";
 import { setOtherData, setUserProfile } from '../../store/reducers/UserData';
-import { setFutureAppointmentData, setPastAppointmentData } from '../../store/reducers/AppointmentData';
+import { setFutureAppointmentData, setPastAppointmentData, setSelectedAppointment } from '../../store/reducers/AppointmentData';
 import CircularProgress from '@mui/material/CircularProgress';
 import FaceIcon from '@mui/icons-material/Face';
 import Face3Icon from '@mui/icons-material/Face3';
@@ -271,8 +271,9 @@ const LandingMain = () => {
         arrows: false
     }
 
-    const rescheduleHandler = () => {
-        navigate('/reschedule')
+    const rescheduleHandler = (data) => {
+        dispatch(setSelectedAppointment(data));
+        navigate('/reschedule');
     }
 
 
@@ -332,7 +333,7 @@ const LandingMain = () => {
                                             {
                                                 futureAppointment.map((data, index) => {
                                                     return (
-                                                        <div className='dFlex' style={{ justifyContent: 'space-evenly', marginTop: '2rem' }}>
+                                                        <div className='dFlex' style={{ justifyContent: 'space-evenly', marginTop: '2rem' }} key={index}>
                                                             {/* <img src={Img} alt="Pic" style={{ width: '5rem', height: '5rem', borderRadius: '50%' }} /> */}
                                                             <div className={`${classes.imgDiv} dFlex`}>
                                                                 {
@@ -353,7 +354,7 @@ const LandingMain = () => {
                                                                 <label style={{ padding: '0 1rem', borderRight: '1px solid grey' }}>{moment(data.ScheduleDateTime).format("DD MMM YYYY")}</label>
                                                                 <label style={{ padding: '0 1rem' }}>{data.ScheduleStartTime}</label>
                                                             </div>
-                                                            <div style={{ background: '#52b8a9', padding: '1rem', borderRadius: '0.4rem', color: 'white', cursor: 'pointer' }} onClick={rescheduleHandler}>Reschedule Appointment</div>
+                                                            <div style={{ background: '#52b8a9', padding: '1rem', borderRadius: '0.4rem', color: 'white', cursor: 'pointer' }} onClick={() => rescheduleHandler(data)}>Reschedule Appointment</div>
                                                         </div>
                                                     )
                                                 })

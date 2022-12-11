@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
     rightDiv: {
         marginLeft: '1rem',
         // marginTop: '3rem',
-        width: '62vw'
+        width: '63vw'
     },
     cardDiv: {
         background: 'rgba(189, 199, 203, 0.2)',
