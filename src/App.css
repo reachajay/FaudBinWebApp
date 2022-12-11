@@ -1,8 +1,34 @@
-.dFlex{
+.dFlex {
     display: flex;
     align-items: center;
 }
 
-.bg-Gradient{
-    background: linear-gradient(45deg, white, #abdfde);
+.bg-Gradient {
+    background: linear-gradient(90deg, white, #abdfde);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 0.8rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

@@ -1,14 +1,45 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
+// import { useDispatch } from 'react-redux';
+// import { setData } from '../../store/reducers/SelectedData';
+
+const useStyles = makeStyles(() => ({
+    wrapperCardDiv: {
+        background: 'rgba(0, 0, 0, 0.2)',
+        flexDirection: 'column',
+        padding: '2rem',
+        borderRadius: '0.4rem',
+        height: '8rem',
+        justifyContent: 'center',
+        '&:hover': {
+            boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+        }
+    },
+    innerDiv: {
+        background: 'rgba(255, 255, 255, 0.4)',
+        padding: '1.8rem',
+        borderRadius: '50%'
+    },
+    textLabel: {
+        marginTop: '1rem',
+        textAlign: 'center',
+        textTransform: 'capitalize'
+    }
+}))
 
 const SectionCard = (props) => {
+
+    const classes = useStyles();
+
     return (
-        <div>
-            {/* <Grid item md={2}> */}
-                <div className='dFlex cp' style={{ background: '#CDD4D2', flexDirection: 'column', padding: '1rem', borderRadius: '0.4rem', height: '8rem', justifyContent: 'center' }}>
-                    <div style={{ background: '#E7EAE9', padding: '2rem', borderRadius: '50%' }}>{props.data.icon}</div>
-                    <div style={{ marginTop: '1rem' }}>{props.data.name}</div>
+        <div >
+            <div className={`${classes.wrapperCardDiv} dFlex cp`}>
+                <div className={classes.innerDiv}>
+                    <img src={props && props.icon && props.icon} alt="ic" />
                 </div>
-            {/* </Grid> */}
+                <div className={classes.textLabel}>{props.data.toLowerCase()}</div>
+            </div>
         </div>
     )
 }
