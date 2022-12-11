@@ -32,9 +32,13 @@ const useStyles = makeStyles(() => ({
   leftDiv: {
     // height: 'calc(100vh - 7rem)',
     // background: 'rgb(189,199,203)',
-
-    overflow: 'auto',
-    background: 'linear-gradient(1deg, rgba(189, 199, 203, 0.5856092436974789) 0 %, rgba(95, 126, 138, 0.72) 35 %)'
+    position: 'relative',
+    borderRadius: '0 0 0.8rem 0.8rem',
+    overflowY: 'auto',
+    background: 'linear-gradient(1deg, rgba(189, 199, 203, 0.5856092436974789) 0 %, rgba(95, 126, 138, 0.72) 35 %)',
+    '& ::-webkit-scrollbar': {
+      width: '0px'
+    }
   },
   leftWrapper: {
     alignItems: 'flex-start',
@@ -53,7 +57,7 @@ const useStyles = makeStyles(() => ({
   },
   rightDiv: {
     marginLeft: '1rem',
-    width: '62vw'
+    width: '63vw'
   },
   cardDiv: {
     background: 'rgba(189, 199, 203, 0.2)',
@@ -335,12 +339,12 @@ const Departments = () => {
                         <CircularProgress />
                       </div>
                       :
-                      <div style={{ position: 'relative', height: 'calc(100vh - 6rem)', overflow: 'auto' }}>
+                      <div style={{ height: '100vh', overflow: 'auto' }}>
                         {
                           doctorsData.map((doctor, index) => {
                             return (
                               // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => { setSelectDoctor(doctor); getDate(doctor.DoctorId) }} style={{ background: selectDoctor.DoctorID === doctor.DoctorID ? 'rgba(95, 126, 138, 0.4)' : 'rgba(189, 199, 203, 0.2)' }}>
+                              <div className={`${classes.cardDiv} dFlex`} key={index} onClick={() => { setSelectDoctor(doctor); getDate(doctor.DoctorId) }} style={{ background: selectDoctor.DoctorID === doctor.DoctorID ? 'rgba(95, 126, 138, 0.4)' : 'rgba(189, 199, 203, 0.2)' }}>
                                 <div className={`${classes.imgWrapper} dFlex`}>
                                   <div className={`${classes.imgDiv} dFlex`}>
                                     {
@@ -366,191 +370,7 @@ const Departments = () => {
                             )
                           })
                         }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>
-                                    {
-                                      doctor.GenderID !== 1
-                                        ?
-                                        <FaceIcon fontSize="large" />
-                                        :
-                                        <Face3Icon fontSize="large" />
-                                    }
-                                  </div>
-                                  {
-                                    doctor.RatingDisplay === "YES" &&
-                                    <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  }
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label className='para_16_700'>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={`${classes.mTop} para_10_Regular`}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>A</div>
-                                  {/* {
-                            doctor.RatingDisplay === "YES" && */}
-                                  <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  {/* } */}
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={classes.mTop}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>A</div>
-                                  {/* {
-                            doctor.RatingDisplay === "YES" && */}
-                                  <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  {/* } */}
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={classes.mTop}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>A</div>
-                                  {/* {
-                            doctor.RatingDisplay === "YES" && */}
-                                  <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  {/* } */}
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={classes.mTop}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>A</div>
-                                  {/* {
-                            doctor.RatingDisplay === "YES" && */}
-                                  <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  {/* } */}
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={classes.mTop}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>A</div>
-                                  {/* {
-                            doctor.RatingDisplay === "YES" && */}
-                                  <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  {/* } */}
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={classes.mTop}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>A</div>
-                                  {/* {
-                            doctor.RatingDisplay === "YES" && */}
-                                  <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  {/* } */}
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={classes.mTop}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {
-                          doctorsData.map((doctor, index) => {
-                            return (
-                              // <Grid item sm={12} key={index}>
-                              <div className={`${classes.cardDiv} dFlex`} onClick={() => getDate(doctor.DoctorId)}>
-                                <div className={`${classes.imgWrapper} dFlex`}>
-                                  <div className={`${classes.imgDiv} dFlex`}>A</div>
-                                  {/* {
-                            doctor.RatingDisplay === "YES" && */}
-                                  <Rating value={doctor.Ratings} readOnly precision={0.1} size="small" style={{ marginTop: '0.8rem' }} />
-                                  {/* } */}
-                                </div>
-                                <div className={`${classes.detailWrapper} dFlex`}>
-                                  <label>{doctor.DoctorName}</label>
-                                  <label className={classes.mTop}>{doctor.Designation}</label>
-                                  {doctor.ShortDescription && <label className={classes.mTop}>{doctor.ShortDescription}</label>}
-                                </div>
-                              </div>
-                              // </Grid>
-                            )
-                          })
-                        }
-                        {/* <div className={classes.shadow} style={{width: '100%'}} /> */}
+                        {doctorsData.length > 4 && <div className={classes.shadow} style={{width: '100%'}} />}
                       </div>
                   }
 
