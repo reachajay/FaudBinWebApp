@@ -46,8 +46,8 @@ const LoginPopup = (props) => {
     // const dispatch = useDispatch()
 
     const changeHandler = (e) => {
-        if (e.target.vaue.match("^[0-9]*$") !== null) {
-            setOtp(e.target.vaue);
+        if (e.target.value.match("^[0-9]") !== null) {
+            setOtp(e.target.value);
         }
     }
 
@@ -97,16 +97,16 @@ const LoginPopup = (props) => {
         <>
         {loader && <CircularProgress />}
         <Dialog open={props.open} onClose={props.closeHandler}>
-            <DialogTitle>
+            <div className={`${classes.dialog} ${classes.glassSection}`}>
+            {/* <DialogTitle>
                 <div className={`${classes.titleWrapper} dFlex`}>
                     <div>Validation</div>
                     <CloseIcon onClick={props.closeHandler} />
                 </div>
-            </DialogTitle>
-            <div className={`${classes.dialog} ${classes.glassSection}`}>
+            </DialogTitle> */}
                 <div>Enter OTP</div>
                 {/* <TextField variant="outlined" placeholder='Enter OTP' type={'password'} value={otp} onChange={(e) => setOtp(e.target.value)} className={classes.margin} /> */}
-                <TextField variant="outlined" placeholder='Enter OTP' type={'password'} value={otp} onChange={(e) => changeHandler} className={classes.margin} />
+                <TextField variant="outlined" placeholder='Enter OTP' type={'password'} value={otp} onChange={(e) => changeHandler(e)} className={classes.margin} />
                 {errorMsg.length > 0 && <div>{errorMsg}</div>}
                 <div className={classes.margin} style={{ pointerEvents: otp.trim().length > 0 ? 'all' : 'none', opacity: otp.trim().length > 0 ? '1' : '0.4' }}>
                     <CommonButton name="Login" clickHandler={loginHandler} filledRed={true} />

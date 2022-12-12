@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { setDeptData } from '../../store/reducers/SelectedData';
 import { setFromAppointment, setSelectedAppointment } from '../../store/reducers/AppointmentData';
-import { Backdrop, Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { Backdrop, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import jwt_decode from 'jwt-decode';
 import FaceIcon from '@mui/icons-material/Face';
 import Face3Icon from '@mui/icons-material/Face3';
@@ -89,14 +89,14 @@ const AppointmentCard = (props) => {
         const body = {
             "scheduleID": props.data.ScheduleID,
             "hostpitalId": 1,
-            "cancelRemarks": cancelRemarks
+            "cancelRemarks": "Cancel appointment"
         }
 
         axios.post(url, body, { headers })
             .then((res) => {
                 if (res.status === 200) {
                     setLoader(false);
-                    setPopupMsg(`Your appointment with ${props.dataDoctorName} at ${props.data.ScheduleStartTime} on ${moment(props.data.ScheduleDateTime).format("DD MMM YYYY")} is cancelled successfully`)
+                    setPopupMsg(`Your appointment with ${props.data.DoctorName} at ${props.data.ScheduleStartTime} on ${moment(props.data.ScheduleDateTime).format("DD MMM YYYY")} is cancelled successfully`)
                     // console.log(res);
                     setCancelPopup(true);
                     setCancelRemarks('')
@@ -106,12 +106,14 @@ const AppointmentCard = (props) => {
             .catch((e) => {
                 console.log(e);
                 setLoader(false);
+                setPopupMsg("Your operation is not completed. Some error occured. Please try again");
+                setCancelPopup(true);
             })
     }
 
-    setTimeout(() => {
-        setCancelPopup(false);
-    }, 5000)
+    // setTimeout(() => {
+    //     setCancelPopup(false);
+    // }, 5000)
 
     // console.log(props)
 
@@ -120,12 +122,12 @@ const AppointmentCard = (props) => {
             {/* {
                 loader && 
                 <div style={{width: '100vw', height: '100vh', justifyContent: 'center'}} className='dFlex'> */}
-                    <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                 open={loader}>
 
-                    <CircularProgress />
-                </Backdrop>
-                    {/* </div>
+                <CircularProgress />
+            </Backdrop>
+            {/* </div>
             } */}
             <div className={`${classes.cardDiv} dFlex`}>
                 <div className={`${classes.imgDiv} dFlex`}>
@@ -159,33 +161,36 @@ const AppointmentCard = (props) => {
             {
                 openPopup &&
                 <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
-                    <DialogTitle>
+                    {/* <DialogTitle>
                         <div className='dFlex' style={{justifyContent: 'space-between'}}>
                         <div>Cancel Appointment</div>
                         <Close style={{cursor: 'pointer'}} onClick={() => setOpenPopup(false)} />
                         </div>
-                    </DialogTitle>
-                    <DialogContent>
-                        <TextField value={cancelRemarks} onChange={(e) => setCancelRemarks(e.target.value)} style={{ width: '100%' }} />
-                        <div className='dFlex'>
-                            <div style={{ marginTop: '1rem', pointerEvents: cancelRemarks.length > 0 ? 'all' : 'none', opacity: cancelRemarks.length > 0 ? '1' : '0.4' }}>
-                                <CommonButton name="Confirm Cancel" clickHandler={cancelHandler} filledRed={true} />
+                    </DialogTitle> */}
+                    <DialogContent className='para_12_Regular txtColor_light'>
+                        <p>Do you want to cancel the appointment?</p>
+                        {/* <TextField value={cancelRemarks} onChange={(e) => setCancelRemarks(e.target.value)} style={{ width: '100%' }} /> */}
+                    </DialogContent>
+                    <DialogActions style={{ borderTop: '1px solid #1F646F' }}>
+                        <div className='dFlex' style={{ justifyContent: 'space-between', width: '100%' }}>
+                            <div style={{ marginTop: '1rem' }}>
+                                <CommonButton name="Confirm Cancel" clickHandler={cancelHandler} filledGreen={true} />
                             </div>
                             <div style={{ marginLeft: '1rem', marginTop: '1rem' }}>
-                                <CommonButton name="Cancel" clickHandler={() => setOpenPopup(false)} outlineRed={true} />
+                                <CommonButton name="Cancel" clickHandler={() => setOpenPopup(false)} filledRed={true} />
                             </div>
                         </div>
-                    </DialogContent>
+                    </DialogActions>
                 </Dialog>
             }
 
             {
                 cancelPopup &&
-                <Dialog open={cancelPopup} onClose={() => setCancelPopup(false)}>
+                <Dialog open={cancelPopup} onClose={() => {setCancelPopup(false); props.refresh()}}>
                     <DialogTitle>
-                        <div className='dFlex' style={{justifyContent: 'space-between'}}>
+                        <div className='dFlex' style={{ justifyContent: 'space-between' }}>
                             <div>Success</div>
-                            <Close style={{cursor: 'pointer'}} onClose={() => setCancelPopup(false)} />
+                            <Close style={{ cursor: 'pointer' }} onClick={() => {setCancelPopup(false); props.refresh()}} />
                         </div>
                     </DialogTitle>
                     <DialogContent>

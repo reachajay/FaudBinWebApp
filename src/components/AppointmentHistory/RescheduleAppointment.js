@@ -397,7 +397,7 @@ const RescheduleAppointment = () => {
                         <DialogTitle>
                             <div className='dFlex' style={{ justifyContent: 'space-between' }}>
                                 <div>Success</div>
-                                <Close style={{ cursor: 'pointer' }} onClose={() => setOpenPopup(false)} />
+                                <Close style={{ cursor: 'pointer' }} onClick={() => setOpenPopup(false)} />
                             </div>
                         </DialogTitle>
                         <DialogContent>

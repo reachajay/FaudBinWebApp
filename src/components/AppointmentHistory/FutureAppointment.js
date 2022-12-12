@@ -27,7 +27,10 @@ const FutureAppointment = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        getFutureData();
+    }, []);
 
+    const getFutureData = () => {
         const futureApptUrl = `${constant.BASE_URL}/appointments/future`;
         const headers = {
             token: token
@@ -52,8 +55,7 @@ const FutureAppointment = () => {
                 console.log(e)
                 setLoader(false);
             })
-
-    }, []);
+    }
 
     return (
         loader
@@ -69,7 +71,7 @@ const FutureAppointment = () => {
                         futureAppointment.map((appointment, index) => {
                             return (
                                 <Grid item lg={4} md={4} sm={6} xs={12} key={index}>
-                                    <AppointmentCard data={appointment} appointmentCode={1} />
+                                    <AppointmentCard data={appointment} appointmentCode={1} refresh={getFutureData} />
                                 </Grid>
                             )
                         })

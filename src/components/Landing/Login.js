@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setNationalId } from '../../store/reducers/UserData';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Backdrop } from '@mui/material';
 
 
 const useStyles = makeStyles(() => ({
@@ -126,11 +127,14 @@ const Login = () => {
 
     return (
         <div className={`${classes.rootDiv} bg-Gradient dFlex`}>
-            {
+            {/* {
                 loader
-                    ?
-                    <CircularProgress />
-                    :
+                    ? */}
+                    <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                        open={loader}>
+                        <CircularProgress />
+                    </Backdrop>
+                    {/* : */}
                     <div className={classes.glassSection}>
                         <div className='dFlex landingHeader' style={{ justifyContent: 'center', fontWeight: '500' }}>Login</div>
                         <div style={{ flexDirection: 'column' }} className='dFlex'>
@@ -148,7 +152,7 @@ const Login = () => {
                             validate && <LoginPopup open={validate} closeHandler={closePopupHandler} />
                         }
                     </div>
-            }
+            {/* } */}
         </div>
     )
 }

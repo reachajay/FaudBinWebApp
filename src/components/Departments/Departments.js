@@ -57,7 +57,7 @@ const useStyles = makeStyles(() => ({
   },
   rightDiv: {
     marginLeft: '1rem',
-    width: '63vw'
+    width: '62vw'
   },
   cardDiv: {
     background: 'rgba(189, 199, 203, 0.2)',
@@ -65,7 +65,7 @@ const useStyles = makeStyles(() => ({
     backdropFilter: 'blur(40px)',
     borderRadius: '0.8rem',
     marginBottom: '1rem',
-    padding: '2rem',
+    padding: '1.5rem',
     width: '21rem',
     height: '8rem'
   },
@@ -281,12 +281,14 @@ const Departments = () => {
           setLoader(false);
           setPopupMsg(`Appointment scheduled successfully with ${selectDoctor.DoctorName} on ${moment(selectedDate).format("DD MMM YYYY")} at ${selectedSlot.fromTime}`)
           setScheduleAppointment(true);
-          navigate('/home');
+          // navigate('/home');
         }
       })
       .catch((e) => {
         console.log(e)
         setLoader(false);
+        setPopupMsg(`Your appointment is not scheduled due to some error. Please try again.`)
+        setScheduleAppointment(true);
       })
     // setPopupMsg("Appointment scheduled successfully !!")
     // setScheduleAppointment(true);
@@ -297,10 +299,24 @@ const Departments = () => {
   }
 
 
-  setTimeout(() => {
-    setScheduleAppointment(false);
-    // backHandler();
-  }, 5000)
+  // setTimeout(() => {
+  //   setScheduleAppointment(false);
+  //   // backHandler();
+  // }, 5000)
+
+  // setTimeout(() => {
+  //   navigate('/')
+  // }, 10000)
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setScheduleAppointment(false);
+  //   }, 5000)
+
+  //   setTimeout(() => {
+  //     navigate('/home')
+  //   }, 10000)
+  // }, [scheduleAppointment])
 
   // console.log(selectedSlot);
   // console.log(selectedDate)
@@ -339,7 +355,7 @@ const Departments = () => {
                         <CircularProgress />
                       </div>
                       :
-                      <div style={{ height: '100vh', overflow: 'auto' }}>
+                      <div style={{ height: '100vh', overflowY: 'auto' }}>
                         {
                           doctorsData.map((doctor, index) => {
                             return (
@@ -370,7 +386,7 @@ const Departments = () => {
                             )
                           })
                         }
-                        {doctorsData.length > 4 && <div className={classes.shadow} style={{width: '100%'}} />}
+                        {doctorsData.length > 4 && <div className={classes.shadow} style={{ width: '100%' }} />}
                       </div>
                   }
 
@@ -510,11 +526,11 @@ const Departments = () => {
       {
         scheduleAppointment
         &&
-        <Dialog open={scheduleAppointment} onClose={() => setScheduleAppointment(false)}>
+        <Dialog open={scheduleAppointment} onClose={() => {setScheduleAppointment(false); navigate('/home')}}>
           <DialogTitle>
             <div className='dFlex' style={{ justifyContent: 'space-between' }}>
               <div>Success</div>
-              <Close style={{ cursor: 'pointer' }} onClose={() => setScheduleAppointment(false)} />
+              <Close style={{ cursor: 'pointer' }} onClick={() => {setScheduleAppointment(false); navigate('/home')}} />
             </div>
           </DialogTitle>
           <DialogContent>
