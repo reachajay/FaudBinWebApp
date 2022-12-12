@@ -4,28 +4,7 @@ import CommonButton from '../Common/CommonButton';
 import { makeStyles } from '@mui/styles';
 import Img from '../../Images/HospitalImage.jpg';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-// import VaccinesIcon from '@mui/icons-material/Vaccines';
-// import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-// import SettingsInputSvideoIcon from '@mui/icons-material/SettingsInputSvideo';
-// import TagFacesIcon from '@mui/icons-material/TagFaces';
-// import GrassIcon from '@mui/icons-material/Grass';
-// import PsychologyIcon from '@mui/icons-material/Psychology';
-// import FindInPageIcon from '@mui/icons-material/FindInPage';
-// import HistoryIcon from '@mui/icons-material/History';
-// import ScienceIcon from '@mui/icons-material/Science';
-// import FilterBAndWIcon from '@mui/icons-material/FilterBAndW';
-// import ArticleIcon from '@mui/icons-material/Article';
-// import SickIcon from '@mui/icons-material/Sick';
-// import BloodtypeIcon from '@mui/icons-material/Bloodtype';
-// import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
-// import Brain from '../../Images/Brain.png';
-// import Drugs from '../../Images/Drugs.png';
-// import Hair from '../../Images/Hair.png';
-// import Heart from '../../Images/Heart.png';
-// import Lungs from '../../Images/Lungs.png';
-// import Teeth from '../../Images/Teeth.png';
 import Appointment from '../../Images/Appointment.png';
-// import FindDoctor from '../../Images/FindDoctor.png';
 import Lab from '../../Images/Lab.png';
 import Radiology from '../../Images/Radiology.png';
 import Prescription from '../../Images/Prescription.png';
@@ -34,7 +13,6 @@ import SectionCard from '../Common/SectionCard';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import HomePic from '../../Images/LandingHome.png';
-// import  * as api  from '../../apis/api';
 import axios from "axios";
 import * as constant from '../../constant';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,8 +25,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import FaceIcon from '@mui/icons-material/Face';
 import Face3Icon from '@mui/icons-material/Face3';
 import moment from 'moment';
-import Slider from 'react-slick'
-import Carousel from 'react-material-ui-carousel'
+import Carousel from 'react-material-ui-carousel';
+import Footer from '../HeaderFooter/Footer';
 
 
 const useStyles = makeStyles(() => ({
@@ -292,11 +270,6 @@ const LandingMain = () => {
                     </Grid>
 
                     <Grid item md={6}>
-                        {/* <div className='dFlex' style={{ padding: '2rem', justifyContent: 'center', height: '100%', transform: 'rotate(45deg)' }}>
-                            <div style={{ background: '#a6cac5', height: '28rem', width: '22rem', justifyContent: 'center', borderRadius: '1.4rem 3.8rem' }} className='dFlex'>
-                                <div style={{ background: '#5eb8ab', height: '25rem', width: '19rem', borderRadius: '1.4rem 3.8rem' }}></div>
-                            </div>
-                        </div> */}
                         <img src={HomePic} alt="Home Pic" style={{ maxWidth: 'fit-content', maxHeight: 'fit-content' }} />
                     </Grid>
                 </Grid>
@@ -473,48 +446,7 @@ const LandingMain = () => {
             </section>
 
             <section id="Contact">
-                <div className={classes.contactWrapperDiv}>
-                    <p className='heading_4_Medium' style={{ color: '#F4F4F4' }}>Contact Us</p>
-                    <div className={`${classes.eachContactWrapper} dFlex para_12_Regular`}>
-                        <div style={{ padding: '1rem' }}>
-                            <p style={{ borderBottom: '2px solid #B9BBBB' }}>Introduction</p>
-                            <p>Chairman</p>
-                            <p>Message</p>
-                            <p>Hospital</p>
-                            <p>Accredition</p>
-                            <p>Career</p>
-                        </div>
-                        <div style={{ padding: '1rem' }}>
-                            <p style={{ borderBottom: '2px solid #B9BBBB' }}>Find a Doctor</p>
-                            <p>Medical Services</p>
-                            <p>Nursing Services</p>
-                            <p>Accomplishment</p>
-                            <p>Supporting Medical</p>
-                            <p>Services</p>
-                            <p>Hospital Indicator</p>
-                            <p>Programs</p>
-                        </div>
-                        <div style={{ padding: '1rem' }}>
-                            <p style={{ borderBottom: '2px solid #B9BBBB' }}>Media Center</p>
-                            <p>News & Events</p>
-                            <p>Video Gallery</p>
-                            <p>Podcast</p>
-                        </div>
-                        <div style={{ padding: '1rem' }}>
-                            <p style={{ borderBottom: '2px solid #B9BBBB' }}>Contact Us</p>
-                            <p>Get in Touch</p>
-                            <p>Complaints & Suggestions</p>
-                        </div>
-                        <div style={{ padding: '1rem' }}>
-                            <p style={{ borderBottom: '2px solid #B9BBBB' }}>Mobile</p>
-                            <p>Application</p>
-                            <p>Report a Violation</p>
-                        </div>
-                    </div>
-                </div>
-                <div className={`${classes.bottomRibbon} dFlex para_10_Regular`}>
-                    Copyright (2002) - Prince Faud Bin Sultan Hospital | Credit
-                </div>
+                <Footer />
             </section>
 
         </div>

@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
         width: '100%',
         justifyContent: 'center',
         marginTop: '1rem',
-        height: '50vh'
+        height: 'calc(100vh - 28rem)'
     }
 }))
 

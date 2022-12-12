@@ -122,7 +122,7 @@ const AppointmentCard = (props) => {
             {/* {
                 loader && 
                 <div style={{width: '100vw', height: '100vh', justifyContent: 'center'}} className='dFlex'> */}
-            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            <Backdrop sx={{ color: '#fff', zIndex: '1400' }}
                 open={loader}>
 
                 <CircularProgress />

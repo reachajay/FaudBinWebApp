@@ -5,10 +5,9 @@ import LoginPopup from './LoginPopup';
 import CommonButton from '../Common/CommonButton';
 import * as constant from '../../constant'
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setNationalId } from '../../store/reducers/UserData';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Backdrop } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 
 const useStyles = makeStyles(() => ({
@@ -65,8 +64,8 @@ const Login = () => {
     const [validate, setValidate] = useState(false);
     const [error, setError] = useState('');
     const classes = useStyles();
-    const [loader, setLoader] = useState(false)
-    // const dispatch = useDispatch();
+    const [loader, setLoader] = useState(false);
+    const navigate = useNavigate();
 
     const changeHandler = (e) => {
         setCredential({
@@ -125,34 +124,39 @@ const Login = () => {
         }
     }
 
+    
+
     return (
         <div className={`${classes.rootDiv} bg-Gradient dFlex`}>
-            {/* {
-                loader
-                    ? */}
-                    <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                        open={loader}>
-                        <CircularProgress />
-                    </Backdrop>
-                    {/* : */}
-                    <div className={classes.glassSection}>
-                        <div className='dFlex landingHeader' style={{ justifyContent: 'center', fontWeight: '500' }}>Login</div>
-                        <div style={{ flexDirection: 'column' }} className='dFlex'>
-                            <TextField variant="outlined" placeholder='Enter NationalID' name="id" onBlur={(e) => blurHandler(e)} value={credential.id} onChange={(e) => changeHandler(e)} className={classes.marginDiv} />
-                            <TextField variant="outlined" placeholder='Enter Password' name="pwd" type={'password'} value={credential.pwd} onChange={(e) => changeHandler(e)} className={classes.marginDiv} />
-                            {error.length > 0 && <div>{error}</div>}
-                        </div>
-                        {/* <Button variant="contained" className={classes.marginDiv} onClick={() => setValidate(true)}>Login</Button> */}
-                        <div className={`${classes.btnDiv} dFlex`} style={{ pointerEvents: credential.id && credential.pwd ? 'all' : 'none', opacity: credential.id && credential.pwd ? '1' : '0.4' }}>
-                            <div style={{ width: '13rem' }}>
-                                <CommonButton name="Login" clickHandler={loginHandler} filledRed={true} />
-                            </div>
-                        </div>
-                        {
-                            validate && <LoginPopup open={validate} closeHandler={closePopupHandler} />
-                        }
+
+            <Backdrop sx={{ color: '#fff', zIndex: '1400' }}
+                open={loader}>
+                <CircularProgress />
+            </Backdrop>
+
+            <div className={classes.glassSection}>
+                <div>
+                    <div className='dFlex landingHeader' style={{ justifyContent: 'center', fontWeight: '500' }}>Login</div>
+                    <div style={{ flexDirection: 'column' }} className='dFlex'>
+                        <TextField style={{ width: 'calc(100% - 25rem)' }} variant="outlined" placeholder='Enter NationalID' name="id" onBlur={(e) => blurHandler(e)} value={credential.id} onChange={(e) => changeHandler(e)} className={classes.marginDiv} />
+                        <TextField style={{ width: 'calc(100% - 25rem)' }} variant="outlined" placeholder='Enter Password' name="pwd" type={'password'} value={credential.pwd} onChange={(e) => changeHandler(e)} className={classes.marginDiv} />
+                        {error.length > 0 && <div>{error}</div>}
                     </div>
-            {/* } */}
+                    <div className={`${classes.btnDiv} dFlex`} style={{ pointerEvents: credential.id && credential.pwd ? 'all' : 'none', opacity: credential.id && credential.pwd ? '1' : '0.4' }}>
+                        <div style={{ width: '20rem' }}>
+                            <CommonButton name="Login" clickHandler={loginHandler} filledRed={true} />
+                        </div>
+                    </div>
+                </div>
+                <div className='dFlex' style={{ justifyContent: 'center', width: '100%', marginTop: '1rem' }}>
+                    <div style={{ marginRight: '12rem' }} className='cp' onClick={() => navigate('/forgetPassword')}>Forgot Password ?</div>
+                    {/* <div title='This feature is not yet ready' className='cp'>New User</div> */}
+                </div>
+                {
+                    validate && <LoginPopup open={validate} closeHandler={closePopupHandler} />
+                }
+            </div>
+
         </div>
     )
 }

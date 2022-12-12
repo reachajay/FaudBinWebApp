@@ -125,7 +125,7 @@ const useStyles = makeStyles(() => ({
   noDataDiv: {
     width: '100%',
     justifyContent: 'center',
-    height: 'calc(100vh - 20rem)'
+    height: 'calc(100vh - 28rem)'
   },
 
   doctorDescription: {
@@ -281,7 +281,6 @@ const Departments = () => {
           setLoader(false);
           setPopupMsg(`Appointment scheduled successfully with ${selectDoctor.DoctorName} on ${moment(selectedDate).format("DD MMM YYYY")} at ${selectedSlot.fromTime}`)
           setScheduleAppointment(true);
-          // navigate('/home');
         }
       })
       .catch((e) => {
@@ -327,7 +326,7 @@ const Departments = () => {
       {/* // loader
         //   ?
           // <div className='dFlex' style={{width: '100vw', height: '100vh', justifyContent: 'center'}}> */}
-      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loader}>
+      <Backdrop sx={{ color: '#fff', zIndex: '1400' }} open={loader}>
         <CircularProgress />
       </Backdrop>
       {/* // </div> */}

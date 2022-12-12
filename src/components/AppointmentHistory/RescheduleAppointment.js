@@ -268,7 +268,7 @@ const RescheduleAppointment = () => {
             {/* {
                 !loader && */}
             {/* // <div className='dFlex' style={{ justifyContent: 'center', width: '100vw', height: '100vh', position: 'absolute', zIndex: '9' }}> */}
-            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            <Backdrop sx={{ color: '#fff', zIndex: '1400' }}
                 open={loader}>
                 <CircularProgress />
             </Backdrop>
