@@ -357,6 +357,8 @@ const LandingMain = () => {
                                 <CircularProgress />
                             </div>
                             :
+                            specialities.length > 0
+                            ?
                             <Grid container spacing={2}>
                                 {viewMoreSpeciality ?
                                     specialities.map((speciality, index) => {
@@ -395,6 +397,8 @@ const LandingMain = () => {
                                     </Grid>
                                 }
                             </Grid>
+                            :
+                            <div>No records found</div>
                     }
                 </div>
             </section>

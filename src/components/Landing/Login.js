@@ -6,8 +6,9 @@ import CommonButton from '../Common/CommonButton';
 import * as constant from '../../constant'
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
-import { Backdrop } from '@mui/material';
+import { Alert, Backdrop, IconButton, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const useStyles = makeStyles(() => ({
@@ -16,8 +17,8 @@ const useStyles = makeStyles(() => ({
         // alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: 'calc(100vh - 4rem)',
-        minHeight: '100vh'
+        height: 'calc(100vh - 5rem)',
+        // minHeight: '100vh'
         // padding: '2rem',
         // '-webkit-filter':'blur(5px)'
     },
@@ -65,6 +66,8 @@ const Login = () => {
     const [error, setError] = useState('');
     const classes = useStyles();
     const [loader, setLoader] = useState(false);
+    const [apiError, setApiError] = useState(false);
+    const [apiErrorMsg, setApiErrorMsg] = useState('')
     const navigate = useNavigate();
 
     const changeHandler = (e) => {
@@ -111,6 +114,8 @@ const Login = () => {
             .catch((e) => {
                 console.log(e);
                 setLoader(false);
+                setApiErrorMsg(e.message);
+                setApiError(true);
             })
     }
 
@@ -124,7 +129,9 @@ const Login = () => {
         }
     }
 
-    
+    setTimeout(() => {
+        setApiError(false)
+    }, 5000);
 
     return (
         <div className={`${classes.rootDiv} bg-Gradient dFlex`}>
@@ -143,7 +150,7 @@ const Login = () => {
                         {error.length > 0 && <div>{error}</div>}
                     </div>
                     <div className={`${classes.btnDiv} dFlex`} style={{ pointerEvents: credential.id && credential.pwd ? 'all' : 'none', opacity: credential.id && credential.pwd ? '1' : '0.4' }}>
-                        <div style={{ width: '20rem' }}>
+                        <div style={{ width: 'calc(100% - 25rem)' }}>
                             <CommonButton name="Login" clickHandler={loginHandler} filledRed={true} />
                         </div>
                     </div>
@@ -156,6 +163,18 @@ const Login = () => {
                     validate && <LoginPopup open={validate} closeHandler={closePopupHandler} />
                 }
             </div>
+
+            <Snackbar open={apiError} autoHideDuration={600}>
+                <Alert
+                    severity='error'
+                    action={
+                        <IconButton size='small' aria-label="close" color="inherit" onClick={() => setApiError(false)}>
+                            <CloseIcon fontSize='small' />
+                        </IconButton>}
+                >
+                    {apiErrorMsg}
+                </Alert>
+            </Snackbar>
 
         </div>
     )

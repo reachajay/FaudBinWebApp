@@ -114,8 +114,8 @@ const ForgetPassword = () => {
     const setNewPasswordHandler = () => {
 
         setValidationError('');
-        let token = token.access
-        let details = jwt_decode(token);
+        let tmpToken = token.access
+        let details = jwt_decode(tmpToken);
         const data = details.profile;
         setLoader(true);
 
@@ -192,18 +192,18 @@ const ForgetPassword = () => {
         setValidateOtp(false);
     }
 
-    const action = (
-        <React.Fragment>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={() => setRefreshError(false)}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>
-        </React.Fragment>
-    );
+    // const action = (
+    //     <React.Fragment>
+    //         <IconButton
+    //             size="small"
+    //             aria-label="close"
+    //             color="inherit"
+    //             onClick={() => setRefreshError(false)}
+    //         >
+    //             <CloseIcon fontSize="small" />
+    //         </IconButton>
+    //     </React.Fragment>
+    // );
 
     const backToLogin = () => {
         navigate('/');
@@ -243,8 +243,8 @@ const ForgetPassword = () => {
                 <DialogTitle>Forgot Password ?</DialogTitle>
                 <DialogContent style={{ width: '20rem' }}>
                     <div className='dFlex' style={{ flexDirection: 'column' }}>
-                        <TextField style={{ marginTop: '1rem', width: '100%' }} variant='outlined' placeholder="New Password" value={newPwd} onChange={(e) => setNewPwd(e.target.value)} />
-                        <TextField style={{ marginTop: '1rem', width: '100%' }} variant='outlined' placeholder="Confirm Password" value={confirmPwd} onChange={(e) => setConfirmPwd(e.target.value)} />
+                        <TextField type='password' style={{ marginTop: '1rem', width: '100%' }} variant='outlined' placeholder="New Password" value={newPwd} onChange={(e) => setNewPwd(e.target.value)} />
+                        <TextField type='password' style={{ marginTop: '1rem', width: '100%' }} variant='outlined' placeholder="Confirm Password" value={confirmPwd} onChange={(e) => setConfirmPwd(e.target.value)} />
                     </div>
                     {validationError.length > 0 && <div className={`${classes.errorWrapper}`}>{validationError}</div>}
                 </DialogContent>
@@ -255,7 +255,7 @@ const ForgetPassword = () => {
                 </DialogActions>
             </Dialog>
 
-            <Snackbar open={refreshError} autoHideDuration={600}>
+            <Snackbar open={refreshError} autoHideDuration={6000}>
                 <Alert severity='error'
                     action={
                         <IconButton
